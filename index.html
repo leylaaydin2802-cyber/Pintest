@@ -1,6 +1,6 @@
-
+html
 <!DOCTYPE html>
-<html lang="uz">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,21 +9,17 @@
     body {
       margin: 0;
       background: #f4efff;
-      font-family: Arial, sans-serif;
+      font-family: Arial;
       text-align: center;
       color: #30204f;
     }
     header {
-      background: linear-gradient(135deg, #7044d5, #532ba8);
+      background: #7044d5;
       color: white;
-      padding: 35px 20px;
-      border-bottom-left-radius: 25px;
-      border-bottom-right-radius: 25px;
-      box-shadow: 0 4px 15px rgba(112, 68, 213, 0.3);
+      padding: 30px;
     }
     h1 {
-      font-size: 38px;
-      margin: 0 0 10px 0;
+      font-size: 40px;
     }
     .card {
       background: white;
@@ -31,8 +27,6 @@
       padding: 25px;
       border-radius: 20px;
       max-width: 400px;
-      width: 85%;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     }
     button {
       background: #7044d5;
@@ -41,132 +35,19 @@
       padding: 15px 30px;
       border-radius: 12px;
       font-size: 18px;
-      cursor: pointer;
-      transition: 0.2s;
-      font-weight: bold;
-    }
-    button:hover {
-      background: #5831b5;
-      transform: scale(1.03);
-    }
-    .option-btn {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
-      background: #f4efff;
-      color: #30204f;
-      border: 2px solid #dcd0ff;
-      text-align: left;
-      padding: 12px 18px;
-    }
-    .option-btn:hover {
-      background: #7044d5;
-      color: white;
-      border-color: #7044d5;
-    }
-    .hidden {
-      display: none;
     }
   </style>
 </head>
 <body>
-
   <header>
     <h1>💜 PINTEST</h1>
     <p>Bilimingni sinab ko'r!</p>
   </header>
 
-  <!-- 1-oyna: Kirish -->
-  <div class="card" id="start-card">
+  <div class="card">
     <h2>Xush kelibsan!</h2>
     <p>Qiziqarli testlarni ishlashni boshlaymiz.</p>
-    <button onclick="startQuiz()">Boshlash</button>
+    <button onclick="alert('PINTESTga xush kelibsiz!')">Boshlash</button>
   </div>
-
-  <!-- 2-oyna: Test savollari -->
-  <div class="card hidden" id="quiz-card">
-    <p id="progress" style="color: #7044d5; font-weight: bold;">Savol 1 / 3</p>
-    <h2 id="question-text">Savol matni</h2>
-    <div id="options-box"></div>
-  </div>
-
-  <!-- 3-oyna: Natija -->
-  <div class="card hidden" id="result-card">
-    <h2>🎉 Test yakunlandi!</h2>
-    <p id="score-text" style="font-size: 20px; font-weight: bold;"></p>
-    <button onclick="restartQuiz()">Qayta ishlash</button>
-  </div>
-
-  <script>
-    const questions = [
-      {
-        q: "O'zbekistonning poytaxti qaysi shahar?",
-        options: ["Samarqand", "Toshkent", "Buxoro"],
-        answer: 1
-      },
-      {
-        q: "HTML nima uchun ishlatiladi?",
-        options: ["Veb-sahifa tuzish uchun", "Rasm chizish uchun", "O'yin o'ynash uchun"],
-        answer: 0
-      },
-      {
-        q: "1 bayt necha bitga teng?",
-        options: ["4 bit", "16 bit", "8 bit"],
-        answer: 2
-      }
-    ];
-
-    let current = 0;
-    let score = 0;
-
-    function startQuiz() {
-      document.getElementById("start-card").classList.add("hidden");
-      document.getElementById("quiz-card").classList.remove("hidden");
-      showQuestion();
-    }
-
-    function showQuestion() {
-      const item = questions[current];
-      document.getElementById("progress").innerText = `Savol ${current + 1} / ${questions.length}`;
-      document.getElementById("question-text").innerText = item.q;
-      
-      const box = document.getElementById("options-box");
-      box.innerHTML = "";
-      
-      item.options.forEach((opt, index) => {
-        const btn = document.createElement("button");
-        btn.className = "option-btn";
-        btn.innerText = opt;
-        btn.onclick = () => checkAnswer(index);
-        box.appendChild(btn);
-      });
-    }
-
-    function checkAnswer(selected) {
-      if (selected === questions[current].answer) {
-        score++;
-      }
-      current++;
-      if (current < questions.length) {
-        showQuestion();
-      } else {
-        showResult();
-      }
-    }
-
-    function showResult() {
-      document.getElementById("quiz-card").classList.add("hidden");
-      document.getElementById("result-card").classList.remove("hidden");
-      document.getElementById("score-text").innerText = `Siz ${questions.length} tadan ${score} ta to'g'ri topdingiz!`;
-    }
-
-    function restartQuiz() {
-      current = 0;
-      score = 0;
-      document.getElementById("result-card").classList.add("hidden");
-      document.getElementById("start-card").classList.remove("hidden");
-    }
-  </script>
-
 </body>
 </html>
